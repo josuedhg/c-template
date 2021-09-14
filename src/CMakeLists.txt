@@ -1,11 +1,9 @@
 cmake_minimum_required(VERSION 3.18)
 
-set(c_sources
-	${CMAKE_SOURCE_DIR}/src/hello.c
-	PARENT_SCOPE)
-set(c_headers hello.h)
+file(GLOB c_sources ${CMAKE_SOURCE_DIR}/src/*.c)
+file(GLOB c_headers ${CMAKE_SOURCE_DIR}/src/*.h)
 
-add_library(hello SHARED hello.c)
+add_library(hello SHARED ${c_sources})
 
 set_target_properties(hello PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 

@@ -4,16 +4,21 @@ enable_testing()
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
-set(c_tests tests.c)
-
 add_definitions(-DUNIT_TESTING=ON)
 
 add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND})
-add_executable(sample_test ${c_tests} ${c_sources})
 
-target_link_libraries(sample_test cmocka)
+file(GLOB c_sources ${CMAKE_SOURCE_DIR}/src/*.c)
 
-add_test(NAME firstTests
-	WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-	COMMAND sample_test)
-add_dependencies(check sample_test)
+file(GLOB c_tests test_*.c)
+
+foreach(file ${c_tests})
+	get_filename_component(test_name ${file} NAME_WE)
+	add_executable(${test_name} ${file} ${c_sources})
+
+	target_link_libraries(${test_name} cmocka)
+
+	add_test(NAME ${test_name}
+		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+		COMMAND ${test_name})
+endforeach()
