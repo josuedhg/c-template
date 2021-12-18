@@ -6,7 +6,7 @@ include_directories(${CMAKE_SOURCE_DIR}/src)
 
 add_definitions(-DUNIT_TESTING=ON)
 
-add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND})
+add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure)
 
 file(GLOB c_sources ${CMAKE_SOURCE_DIR}/src/*.c)
 
