@@ -45,6 +45,12 @@ jobs:
       working-directory: ${{github.workspace}}/build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target coverage
 
+    - name: Report Coverage
+      uses: terencetcf/github-actions-lcov-minimum-coverage-checker@v1
+      with:
+        coverage-file: build/coverage/coverage.info
+        minimum-coverage: 90
+
     - name: Deploy
       working-directory: ${{github.workspace}}/build
       run: |
