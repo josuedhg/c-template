@@ -45,6 +45,12 @@ jobs:
       working-directory: ${{github.workspace}}/build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target coverage
 
+    - name: Report Coverage
+      uses: manarbenkraouda/lcov-reporter-action@v0.3.5.3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        lcov-file: ${{github.workspace}}/build/coverage/coverage.info
+
     - name: Deploy
       working-directory: ${{github.workspace}}/build
       run: |
