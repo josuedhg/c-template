@@ -1,11 +1,11 @@
 TN:
 SF:/home/runner/work/c-template/c-template/src/hello.c
 FN:5,hello
-FNDA:0,hello
+FNDA:2,hello
 FNF:1
-FNH:0
-DA:5,0
-DA:7,0
+FNH:1
+DA:5,2
+DA:7,2
 LF:2
-LH:0
+LH:2
 end_of_record
